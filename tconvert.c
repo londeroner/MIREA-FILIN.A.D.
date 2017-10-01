@@ -10,17 +10,17 @@ int main(int argc, char *argv[])
 {
 	if (argc == 3) 
 	{
-		if (!(strcmp(argv[2], "C")))	
+		if (!(strcmp(argv[2], "C")) || !(strcmp(argv[2], "c")))	
 		{
 			printf("%s %s: \n", argv[1], argv[2]);
 			FromC(atoi(argv[1]));
 		}
-		if (!(strcmp(argv[2], "F")))	
+		if (!(strcmp(argv[2], "F")) || !(strcmp(argv[2], "f")))	
 		{
 			printf("%s %s: \n", argv[1], argv[2]);
 			FromF(atoi(argv[1]));
 		} 
-		if (!(strcmp(argv[2], "K")))	
+		if (!(strcmp(argv[2], "K")) || !(strcmp(argv[2], "k")))	
 		{
 			printf("%s %s: \n", argv[1], argv[2]);
 			FromK(atoi(argv[1]));
