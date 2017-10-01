@@ -39,18 +39,30 @@ int main(int argc, char *argv[])
 
 void FromC(int temperature)
 {
-	printf("F: %.2f\n", (temperature*1.8)+32);
-	printf("K: %.2f\n\n", temperature+273.15);
+	if (temperature < -273.15f) printf("Incorrect temperature\n\n");
+	else
+	{
+		printf("F: %.2f\n", (temperature*1.8)+32);
+		printf("K: %.2f\n\n", temperature+273.15);
+	}
 }
 
 void FromF(int temperature)
 {
-	printf("C: %.2f\n", (temperature-32)/1.8);
-	printf("K: %.2f\n\n", ((temperature-32)/1.8)+273.15);
+	if (temperature < -459) printf("Incorrect temperature\n\n");
+	else
+	{
+		printf("C: %.2f\n", (temperature-32)/1.8);
+		printf("K: %.2f\n\n", ((temperature-32)/1.8)+273.15);
+	}
 }
 
 void FromK(int temperature)
 {
-	printf("C: %.2f\n", temperature-273.15);
-	printf("F: %.2f\n\n", ((temperature-273.15)*1.8)+32);
+	if (temperature < 0) printf("Incorrect temperature\n\n");
+	else
+	{
+		printf("C: %.2f\n", temperature-273.15);
+		printf("F: %.2f\n\n", ((temperature-273.15)*1.8)+32);
+	}
 }
