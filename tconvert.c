@@ -12,17 +12,17 @@ int main(int argc, char *argv[])
 	{
 		if (!(strcmp(argv[2], "C")) || !(strcmp(argv[2], "c")))	
 		{
-			printf("%s %s: \n", argv[1], argv[2]);
+			printf("%s C: \n", argv[1]);
 			FromC(atoi(argv[1]));
 		}
 		if (!(strcmp(argv[2], "F")) || !(strcmp(argv[2], "f")))	
 		{
-			printf("%s %s: \n", argv[1], argv[2]);
+			printf("%s F: \n", argv[1]);
 			FromF(atoi(argv[1]));
 		} 
 		if (!(strcmp(argv[2], "K")) || !(strcmp(argv[2], "k")))	
 		{
-			printf("%s %s: \n", argv[1], argv[2]);
+			printf("%s K: \n", argv[1]);
 			FromK(atoi(argv[1]));
 		}
 	}
