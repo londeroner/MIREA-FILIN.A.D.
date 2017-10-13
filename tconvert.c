@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
 		printf("%s K: \n", argv[1]);
 		FromK(atoi(argv[1]));
 	}
+	
+	return 0;
 }
 
 void FromC(int temperature)
