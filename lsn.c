@@ -8,9 +8,9 @@
 int main ()
 {
     DIR *dirname;
-    struct dirent *pDire;
+    struct stat *pDire;
     dirname = opendir("/");
     pDire = readdir(dirname);
     while ((pDire = readdir(dirname)) != 0) 
-          printf("%s %s %s %s %s %s %s %s %s %s", pDire->st_mode, pDire->st_ino, pDire->dev, pDire->nlink, pDire->uid, pDire->gid, pDire->size, pDire->ctime);
+          printf("%s %s %s %s %s %s %s %s %s %s", pDire->st_mode, pDire->st_ino, pDire->st_dev, pDire->st_nlink, pDire->st_uid, pDire->st_gid, pDire->st_size, pDire->st_ctime);
 }
