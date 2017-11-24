@@ -9,7 +9,7 @@ int main ()
 {
     DIR *dirname;
     struct dirent *pDire;
-    dirname = opendir("");
+    dirname = fdopendir(dirfd());
     pDire = readdir(dirname);
     while ((pDire = readdir(dirname)) != NULL) 
           printf("%s\n", pDire->d_name);
