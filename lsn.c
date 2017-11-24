@@ -12,5 +12,5 @@ int main ()
     dirname = opendir("/");
     pDire = readdir(dirname);
     while ((pDire = readdir(dirname)) != NULL) 
-          printf("%ld", pDire->st_ino);
+          printf("%ld\n", pDire->st_ino);
 }
