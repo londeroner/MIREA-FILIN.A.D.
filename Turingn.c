@@ -6,7 +6,7 @@ static int i;
 static int *ip;
 static char *cp;
 static int countcycles = -1;
-static char *mascycles[10000];
+static char *mascycles[100];
 
 void work();
 void completecomm();
@@ -15,14 +15,14 @@ int main(int argc, char *argv[])
 {
     FILE *fp;
     char ch;
-	int stc[30000];
-	char comm[30000];
+	int stc[3000];
+	char comm[100];
 
 
-	for (i = 0; i < 30000; i++)
+	for (i = 0; i < 3000; i++)
 		stc[i] = 0;
 
-	ip = &stc[15000];
+	ip = &stc[1500];
 
     if (argc != 2)
     {
