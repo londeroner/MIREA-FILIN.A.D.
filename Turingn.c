@@ -10,7 +10,6 @@ static char *mascycles[10000];
 
 void work();
 void completecomm();
-void cycle();
 
 int main(int argc, char *argv[])
 {
@@ -28,12 +27,6 @@ int main(int argc, char *argv[])
     if (argc != 2)
     {
         printf("You forgot write name file\n");
-        exit(1);
-    }
-
-    if ((fp = fopen(argv[1], "r")) == NULL)
-    {
-        printf("File open Error\n");
         exit(1);
     }
 
@@ -123,16 +116,11 @@ void completecomm()
             case 'b': countcycles++;
                 mascycles[countcycles] = cp;
                 mascycles[countcycles]++;
-                cycle();
 				break;
-            case 'e': if (*ip != 0) { cp = mascycles[countcycles]; cycle(); }
+            case 'e': if (*ip != 0) { cp = mascycles[countcycles]; }
                 else { countcycles--; }
 				break;
     }
     cp++;
 }
 
-void cycle()
-{
-    completecomm();
-}
