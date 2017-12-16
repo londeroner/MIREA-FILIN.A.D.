@@ -5,11 +5,10 @@ static int n = 0;
 static int i;
 static int *ip;
 static char *cp;
-static int countcycles = -1;
+static int countcycles = 0;
 static char *mascycles[100];
 static int stc[3000];
 
-void work();
 void completecomm();
 
 int main(int argc, char *argv[])
@@ -17,7 +16,10 @@ int main(int argc, char *argv[])
     FILE *fp;
     char ch;
 	char comm[100];
-
+    fp = fopen(argv[1], "r");
+    for (i = 0; i < 3000; i++)
+		stc[i] = 0;
+    ip = &stc[1500];
 
     if (argc != 2)
     {
@@ -82,19 +84,10 @@ int main(int argc, char *argv[])
         }
     }
     cp = &comm[0];
-    work();
-    return 0;
-}
-
-void work()
-{
-	for (i = 0; i < 3000; i++)
-		stc[i] = 0;
-    ip = &stc[1500];
-    for (i = 0; i < n; i++)
-    {
+    comm[n] = 'f';
+    while (*cp != 'f')
         completecomm();
-    }
+    return 0;
 }
 
 void completecomm()
@@ -105,20 +98,22 @@ void completecomm()
                 break;
             case 'l': ip--;
                 break;
-            case 'i': *ip++;
+            case 'i': *ip = *ip + 1;
                 break;
-            case 'd': *ip--;
+            case 'd': *ip = *ip - 1;
                 break;
-            case 'p': printf("%d", *ip);
+            case 'p': printf("%d\n", *ip);
                 break;
             case 'b': countcycles++;
                 mascycles[countcycles] = cp;
-                mascycles[countcycles]++;
+
 				break;
-            case 'e': if (*ip != 0) { cp = mascycles[countcycles]; }
-                else { countcycles--; }
+            case 'e':
+                if (*ip == 0) { countcycles--; }
+                else { cp = mascycles[countcycles]; }
+
 				break;
     }
     cp++;
-}
 
+}
