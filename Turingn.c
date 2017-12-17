@@ -14,18 +14,12 @@ void completecomm();
 int main(int argc, char *argv[])
 {
     FILE *fp;
-    char ch;
-	char comm[100];
+    char ch = ' ';
+    char comm[100];
     fp = fopen(argv[1], "r");
     for (i = 0; i < 3000; i++)
 		stc[i] = 0;
     ip = &stc[1500];
-
-    if (argc != 2)
-    {
-        printf("You forgot write name file\n");
-        exit(1);
-    }
 
     while(ch != EOF)
     {
