@@ -1,0 +1,130 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace Std
+{
+    class Program
+    {
+       static  int partition(int[] array, int start, int end)
+        {
+            int marker = start;
+            for (int i = start; i <= end; i++)
+            {
+                if (array[i] <= array[end])
+                {
+                    int temp = array[marker]; 
+                    array[marker] = array[i];
+                    array[i] = temp;
+                    marker += 1;
+                }
+            }
+            return marker - 1;
+        }
+
+        static void quicksort(int[] array, int start, int end)
+        {
+            if (start >= end)
+            {
+                return;
+            }
+            int pivot = partition(array, start, end);
+            quicksort(array, start, pivot - 1);
+            quicksort(array, pivot + 1, end);
+        }
+
+        static void Main(string[] args)
+        {
+            bool finish = false;
+            int dimension = 0;
+
+            while (!finish)
+            {
+                Console.WriteLine("Enter the dimension of the array: ");
+                string InputDimension = Console.ReadLine();
+                if (int.TryParse(InputDimension, out int value))
+                {
+                    dimension = value;
+                    finish = !finish;
+                    if (!(dimension > 0 && dimension < 100))
+                    {
+                        Console.WriteLine("You input invalid dimension");
+                        finish = !finish;
+                    }
+                }
+                else Console.WriteLine("Invalid input, enter a number");
+            }
+            finish = false;
+
+            int[] Mass = new int[dimension];
+
+            while (!finish)
+            {
+                Console.WriteLine("Automatic input or manual? Write auto or man: ");
+                string Input = Console.ReadLine();
+                switch(Input)
+                {
+                    case "auto":
+                        Random rnd = new Random();
+                        for (int i = 0; i < dimension; i++)
+                        {
+                            Mass[i] = rnd.Next(1, 101);
+                            Console.Write("{0} ", Mass[i]);
+                        }
+                        Console.WriteLine();
+                        finish = true;
+                        break;
+                    case "man":
+                        Console.WriteLine("Write numbers with a space");
+                        string[] str = Console.ReadLine().Split();
+                        if (str.Length == dimension)
+                        {
+                            bool RightInput = true;
+                            for (int i = 0; i < dimension; i++)
+                                if (!(int.TryParse(str[i], out int value)))
+                                {
+                                    Console.WriteLine("One or more numbers are entered incorrectly");
+                                    RightInput = false;
+                                    break;
+                                }
+                            if (RightInput)
+                                for (int i = 0; i < dimension; i++)
+                                    Mass[i] = int.Parse(str[i]);
+                        }
+                        else Console.WriteLine("Invalid input, wrong number of numbers");
+                        break;
+                    default: Console.WriteLine("Please enter one of the suggested commands");
+                        break;
+                }
+            }
+
+            int[] MassCopy = new int[dimension];
+            Array.Copy(Mass, MassCopy, dimension);
+            quicksort(MassCopy, 0, dimension-1);
+            bool Work = true;
+
+            while (Work)
+            {
+                Console.WriteLine("Enter command(PrintSort, PrintUnSort): ");
+                string InputCommand = Console.ReadLine();
+                switch (InputCommand)
+                {
+                    case "PrintSort":
+                        for (int i = 0; i < dimension; i++)
+                            Console.Write("{0} ", MassCopy[i]);
+                        break;
+                    case "PrintUnSort":
+                        for (int i = 0; i < dimension; i++)
+                            Console.Write("{0} ", Mass[i]);
+                        break;
+                    default: Console.WriteLine("Wrong command");
+                        break;
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
+
